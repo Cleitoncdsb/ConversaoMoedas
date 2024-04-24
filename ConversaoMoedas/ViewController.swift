@@ -9,6 +9,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
 @IBOutlet weak var btnLibra: UIButton!
 @IBOutlet weak var lblResultado: UILabel!
 @IBOutlet weak var lblNovaMoeda: UILabel!
+var fundo: UIImageView!
     
   let codigoOrigem = "Converter de Real >> BRL"
     
@@ -19,10 +20,10 @@ class ViewController: UIViewController, UITextFieldDelegate {
     lblOrigem.text = codigoOrigem
       txtValor.delegate = self
       
-      let fundo = UIImageView(frame: UIScreen.main.bounds)
+      fundo = UIImageView(frame: UIScreen.main.bounds)
       fundo.image = UIImage(named: "fundo")
       
-      fundo.contentMode = .scaleToFill
+      fundo.contentMode = .scaleAspectFill
       
       view.insertSubview(fundo, at: 0)
       
@@ -91,6 +92,12 @@ class ViewController: UIViewController, UITextFieldDelegate {
     // Função auxiliar para validar se uma string representa um número float válido
     func isValidFloat(text: String) -> Bool {
         return Float(text) != nil
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        fundo.frame = UIScreen.main.bounds
     }
 }
 
